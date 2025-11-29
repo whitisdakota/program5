@@ -42,7 +42,7 @@
               data = data.filter( (student) => student.major == majorFilter);
 
               var templateText = document.getElementById('tableTemplate').innderHTML;
-              var compiledTempalteText = Handlebars.complie(templateText);
+              var compiledTempalteText = Handlebars.compile(templateText);
               compiledHTML = compiledTempalteText({ rows: data })
               // var tableContents = "<table cellspacing='5'>"
               // tableContents += "<tr><td>Name</td><td>Major</td><td>Midterm</td><td>Final</td>"
