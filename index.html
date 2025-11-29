@@ -42,7 +42,7 @@
               data = data.filter( (student) => student.major == majorFilter);
 
               var templateText = document.getElementById('tableTemplate').innerHTML;
-              var compiledTempalteText = Handlebars.compile(templateText);
+              var compiledTemplateText = Handlebars.compile(templateText);
               compiledHTML = compiledTempalteText({ rows: data })
               document.querySelector('#result').innerHTML = compiledHTML;
             }
