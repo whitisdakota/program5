@@ -41,20 +41,9 @@
               }
               data = data.filter( (student) => student.major == majorFilter);
 
-              var templateText = document.getElementById('tableTemplate').innderHTML;
+              var templateText = document.getElementById('tableTemplate').innerHTML;
               var compiledTempalteText = Handlebars.compile(templateText);
               compiledHTML = compiledTempalteText({ rows: data })
-              // var tableContents = "<table cellspacing='5'>"
-              // tableContents += "<tr><td>Name</td><td>Major</td><td>Midterm</td><td>Final</td>"
-              //
-              // for (i = 0; i < data.length; i++) {
-              //   tableContents += `<tr><td> ${data[i].name} </td>
-              //   <td>${data[i].major}</td>
-              //   <td>${data[i].midterm}</td>
-              //   <td>${data[i].final}</td></tr>`
-              // }
-              // tableContents += "</table>";
-              //
               document.querySelector('#result').innerHTML = compiledHTML;
             }
             else {
