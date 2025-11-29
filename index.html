@@ -2,6 +2,8 @@
 <html>
   <head>
     <title>Program 5</title>
+      <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
   </head>
   <body>
     <h1>Select a Major</h1>
@@ -10,6 +12,16 @@
     <h2>We filter out dataset by major</h2>
 
     <div id="result"></div>
+    <script type="text/x-handlebars-template" id="tableTemplate">
+      <table cellspacing='12'>
+        <tr><th>Name</th><th>Major</th><th>Midterm</th><th>Final</th></tr>
+        {{#each rows}}
+          <tr>
+            <td>{{name}}</td><td>{{major}}</td><td>{{midterm}}</td><td>{{final}}</td>
+          </tr>
+        {{/each}}
+      </table>
+    </script>
 
     <script>
       document.addEventListener('DOMContentLoaded', function() {
@@ -29,18 +41,21 @@
               }
               data = data.filter( (student) => student.major == majorFilter);
 
-              var tableContents = "<table cellspacing='5'>"
-              tableContents += "<tr><td>Name</td><td>Major</td><td>Midterm</td><td>Final</td>"
-
-              for (i = 0; i < data.length; i++) {
-                tableContents += `<tr><td> ${data[i].name} </td>
-                <td>${data[i].major}</td>
-                <td>${data[i].midterm}</td>
-                <td>${data[i].final}</td></tr>`
-              }
-              tableContents += "</table>";
-
-              document.querySelector('#result').innerHTML = tableContents
+              var templateText = document.getElementById('tableTemplate').innderHTML;
+              var compiledTempalteText = Handlebars.complie(templateText);
+              compiledHTML = compiledTempalteText({ rows: data })
+              // var tableContents = "<table cellspacing='5'>"
+              // tableContents += "<tr><td>Name</td><td>Major</td><td>Midterm</td><td>Final</td>"
+              //
+              // for (i = 0; i < data.length; i++) {
+              //   tableContents += `<tr><td> ${data[i].name} </td>
+              //   <td>${data[i].major}</td>
+              //   <td>${data[i].midterm}</td>
+              //   <td>${data[i].final}</td></tr>`
+              // }
+              // tableContents += "</table>";
+              //
+              document.querySelector('#result').innerHTML = compiledHTML;
             }
             else {
               document.querySelector('#result').innerHTML = "Data not found";
